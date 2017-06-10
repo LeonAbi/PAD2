@@ -1,0 +1,17 @@
+10 10
+##########
+####.....#
+###......#
+##......t#
+#XL.XL...#
+#........#
+#........#
+#........#
+#........#
+##########
+Character @ 5 5 ConsoleController 5 5
+Character % 2 3 StationaryController 3 4
+Item Greatsword 2 4
+Door 4 1 Lever 4 2
+Trap 3 8
+Door 4 4 Lever 4 5

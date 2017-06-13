@@ -24,6 +24,7 @@
 #include "Passive.h"
 #include "Active.h"
 #include "Lever.h"
+#include <cmath>
 
 using namespace std;
 
@@ -45,6 +46,10 @@ public:
     Position findCharacter(Character* c);
     void print(Position from);
     bool hasLineOfSight(Position from, Position to);
+    vector<Position> getPathTo(Position from, Position to);
+    Position findChar(char c);
+    double round(double x);
+
 private:
     DungeonMap(const DungeonMap& orig);
     const int breite;

@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Active.o \
+	${OBJECTDIR}/AttackController.o \
 	${OBJECTDIR}/Character.o \
 	${OBJECTDIR}/ConsoleController.o \
 	${OBJECTDIR}/Controller.o \
@@ -72,16 +73,21 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/dc_pr4_v1
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/p5
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/dc_pr4_v1: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/p5: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/dc_pr4_v1 ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/p5 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/Active.o: Active.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Active.o Active.cpp
+
+${OBJECTDIR}/AttackController.o: AttackController.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AttackController.o AttackController.cpp
 
 ${OBJECTDIR}/Character.o: Character.cpp
 	${MKDIR} -p ${OBJECTDIR}

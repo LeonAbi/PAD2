@@ -177,99 +177,66 @@ Position DungeonMap::findCharacter(Character* c)
 void DungeonMap::print(Position from)
 {
 
-//    for (int i = 0; i < hoehe; i++)
-//    {
-//        for (int j = 0; j < breite; j++)
-//        {
-//            Position p;
-//            p.reihe = i;
-//            p.spalte = j;
-//            if (hasLineOfSight(from, p))
-//            {
-//                if (playground[i][j]->hasCharacter())
-//                {
-//                    cout << playground[i][j]->getFigure()->getSign();
-//                }
-//
-//                else {
-//                    cout << playground[i][j]->getChar();
-//                   
-//                }
-//            }
-//            else cout << '^';
-//            
-//        }
-//        cout << endl;
-//    }
 
-
-
-
-        for(int i=0;i<hoehe;i++){
-            for(int j=0;j<breite;j++){
+    Position posT;
     
-                    if(playground[i][j]->hasCharacter()){
-                        cout << playground[i][j]->getFigure()->getSign();
-                    }
-                    else cout << playground[i][j]->getChar();
-    
+    for(int i=0;i<hoehe;i++){
+        for(int j=0;j<breite;j++){
+            if(playground[i][j]->hasCharacter()){
                 
+                cout << playground[i][j]->getFigure()->getSign();
             }
-            cout << endl;
-}
+            
+            else{
+                posT.reihe = i;
+                posT.spalte = j;
+                if(hasLineOfSight(from, posT)){
+                    cout << playground[i][j]->getChar();
+                }
+                else cout << "^";
+            }
         }
+        cout << endl;
+    }
+
+
+//        for(int i=0;i<hoehe;i++){
+//            for(int j=0;j<breite;j++){
+//    
+//                    if(playground[i][j]->hasCharacter()){
+//                        cout << playground[i][j]->getFigure()->getSign();
+//                    }
+//                    else cout << playground[i][j]->getChar();
+//    
+//                
+//            }
+//            cout << endl;
+//}
+      }
 
 bool DungeonMap::hasLineOfSight(Position from, Position to)
 {
-    unsigned int rdeltax;
-    unsigned int rdeltay;
-    double deltax = (to.reihe - from.reihe);
-    if(deltax > 0) rdeltax = deltax + 0.5;
-    else rdeltax = deltax - 0.5;
-    
-    double deltay = (to.spalte - from.spalte);
-    if(deltay > 0) rdeltay = deltay + 0.5;
-    else rdeltay = deltay - 0.5;
-    
-    double m = deltay / deltax;
-    double y;
-    int round;
 
-    if (rdeltax <= rdeltay)
-    {
-            int i=from.reihe;
-            
-            while(i<to.reihe){
-                y = (m * (i - from.reihe)) + from.spalte;
-                round = y + 0.5;
-            if (playground[round][i]->getChar() == 'X' || playground[round][i]->getChar() == '#')
-               return false;
-                
-                i++;
+    double deltaX= to.reihe -from.reihe;
+    double deltaY= to.spalte - from.spalte;
+    double len = sqrt((deltaX *deltaX) + (deltaY * deltaY));
+    if(len==0) return true;
+    
+    else{
+        double stepX = deltaX / len;
+        double stepY = deltaY / len;
+        
+        deltaX = from.reihe;
+        deltaY = from.spalte;
+        
+        for(double i=0;i<round(len);i++){
+            if(playground[static_cast<int>(round(deltaX))][static_cast<int>(round(deltaY))]->isTransparent() == false){
+                return false;
             }
-            
-            while(i>from.reihe){
-                y = (m * (i - from.reihe)) + from.spalte;
-                round = y + 0.5;
-            if (playground[round][i]->getChar() == 'X' || playground[round][i]->getChar() == '#')
-               return false;
-                
-                i--;
-            }
-            
-            //        for (int i = from.reihe; i < to.reihe; i++)
-//        {
-//            int z=i;
-//            if(deltax < 0){
-//                
-//                z = from.reihe - 2* (i - from.reihe);
-//            }
-//            
-//            y = (m * (z - from.reihe)) + from.spalte;
-//            round = y + 0.5;
-//            if (playground[round][z]->getChar() == 'X' || playground[round][z]->getChar() == '#')
-//                return false;
+            deltaX += stepX;
+            deltaY += stepY;
         }
+    }
     return true;
 }
 
@@ -298,4 +265,71 @@ bool DungeonMap::hasLineOfSight(Position from, Position to)
 //
 //
 //}
+
+double DungeonMap::round(double x){
+    if(x>0){
+        x += 0.5;
+    }
+    if(x<0){
+        x -= 0.5;
+    }
+    return x;
+}
+
+
+//Praktikum 5
+
+vector<Position> DungeonMap::getPathTo(Position from, Position to)
+{
+    int fReihe = from.reihe;
+    int fSpalte = from.spalte;
+
+    unsigned int reihe = fReihe - to.reihe;
+    unsigned int spalte = fSpalte - to.spalte;
+    vector<Position> pos;
+
+    while (reihe != 1 && spalte != 1)
+    {
+        Position p;
+        if (from.reihe - to.reihe > 1)
+        {
+            p.reihe = from.reihe - 1;
+            fReihe--;
+        }
+        else if (from.reihe - to.reihe < -1)
+        {
+            p.reihe = from.reihe + 1;
+            fReihe++;
+        }
+        else p.reihe = from.reihe;
+
+        if (from.spalte - to.spalte > 1)
+        {
+            p.spalte = from.spalte - 1;
+            fSpalte--;
+        }
+        else if (from.spalte - to.spalte < -1)
+        {
+            p.spalte = from.spalte + 1;
+            fSpalte++;
+        }
+        else p.spalte = from.spalte;
+
+        pos.push_back(p);
+    }
+
+}
+
+Position DungeonMap::findChar(char c){
+    Position p;
+    for(int i= 0; i<hoehe; i++){
+        for(int j=0; j<breite; j++){
+            if(playground[i][j]->getChar() == c){
+                p.spalte = i;
+                p.reihe = j;
+                return p;
+            }
+        }
+    }
+}
 

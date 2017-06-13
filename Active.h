@@ -24,6 +24,7 @@ public:
     void setActivated(bool activated);
     bool getActivated();
     void setpPassive(Passive* pPassive);
+    bool isTransparent() override;
 private:
     bool m_activated;
     Passive* m_pPassive;

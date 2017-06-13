@@ -50,3 +50,7 @@ void Active::setpPassive(Passive* pPassive)
 {
     m_pPassive = pPassive;
 }
+
+bool Active::isTransparent(){
+    return true;
+}

@@ -33,7 +33,7 @@ public:
     bool hasCharacter();
     void setChar(char chara);
     char getChar();
-    bool isTransparent();
+    virtual bool isTransparent()=0;
 private:
     Kacheltyp kachel;
     Character* figure;

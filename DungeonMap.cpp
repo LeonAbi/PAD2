@@ -187,13 +187,15 @@ void DungeonMap::print(Position from)
                 cout << playground[i][j]->getFigure()->getSign();
             }
             
+           
+            
             else{
                 posT.reihe = i;
                 posT.spalte = j;
                 if(hasLineOfSight(from, posT)){
                     cout << playground[i][j]->getChar();
                 }
-                else cout << "^";
+                else cout << "#";
             }
         }
         cout << endl;

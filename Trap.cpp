@@ -46,4 +46,8 @@ void Trap::onEnter(Character* c, Tile* fromTile)
     }
 }
 
+bool Trap::isTransparent(){
+    return true;
+}
+
 

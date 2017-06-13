@@ -67,3 +67,7 @@ void Floor::setPassive(Passive* passive){
     setChar(passive->getChar());
 }
 
+bool Floor::isTransparent(){
+    return true;
+}
+

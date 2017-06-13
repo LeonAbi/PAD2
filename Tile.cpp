@@ -51,6 +51,6 @@ void Tile::setChar(char chara)
     m_char = chara;
 }
 
-bool Tile::isTransparent(){
-    return true;
-}
+//bool Tile::isTransparent(){
+//    return true;
+//}

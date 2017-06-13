@@ -33,6 +33,7 @@ public:
     void setItem(Item* item);
     void setActive(Active* active);
     void setPassive(Passive* passive);
+    bool isTransparent() override;
 
 private:
    Item* m_item; 

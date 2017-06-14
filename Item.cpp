@@ -25,6 +25,10 @@ Item::~Item()
 {
 }
 
+void Item::print(){
+    cout << "*";
+}
+
 ArmingSword::ArmingSword() : Item()
 {
 

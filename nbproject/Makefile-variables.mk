@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=CLang-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/CLang-Linux
-CND_ARTIFACT_NAME_Debug=printaufteilen
-CND_ARTIFACT_PATH_Debug=dist/Debug/CLang-Linux/printaufteilen
+CND_ARTIFACT_NAME_Debug=djistra
+CND_ARTIFACT_PATH_Debug=dist/Debug/CLang-Linux/djistra
 CND_PACKAGE_DIR_Debug=dist/Debug/CLang-Linux/package
-CND_PACKAGE_NAME_Debug=printaufteilen.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/CLang-Linux/package/printaufteilen.tar
+CND_PACKAGE_NAME_Debug=djistra.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/CLang-Linux/package/djistra.tar
 # Release configuration
 CND_PLATFORM_Release=CLang-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/CLang-Linux
-CND_ARTIFACT_NAME_Release=printaufteilen
-CND_ARTIFACT_PATH_Release=dist/Release/CLang-Linux/printaufteilen
+CND_ARTIFACT_NAME_Release=djistra
+CND_ARTIFACT_PATH_Release=dist/Release/CLang-Linux/djistra
 CND_PACKAGE_DIR_Release=dist/Release/CLang-Linux/package
-CND_PACKAGE_NAME_Release=printaufteilen.tar
-CND_PACKAGE_PATH_Release=dist/Release/CLang-Linux/package/printaufteilen.tar
+CND_PACKAGE_NAME_Release=djistra.tar
+CND_PACKAGE_PATH_Release=dist/Release/CLang-Linux/package/djistra.tar
 #
 # include compiler specific variables
 #

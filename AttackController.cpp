@@ -27,18 +27,6 @@ AttackController::~AttackController()
 
 int AttackController::move(){
     
-    Position thisContr;
-    thisContr = m_map->findCharacter(m_char);
-    
-    vector<Position> vec = m_map->getPathTo(thisContr, m_map->findChar('@') );
-    if(vec[1].reihe == (thisContr.reihe + 1) && vec[1].spalte == thisContr.spalte ) return 4;
-    if(vec[1].reihe == (thisContr.reihe - 1) && vec[1].spalte == thisContr.spalte ) return 6;
-    if(vec[1].reihe == (thisContr.reihe + 1) && vec[1].spalte == (thisContr.spalte +1) ) return 7;
-    if(vec[1].reihe == (thisContr.reihe + 1) && vec[1].spalte == (thisContr.spalte -1) ) return 1;
-    if(vec[1].reihe == thisContr.reihe && vec[1].spalte == (thisContr.spalte +1) ) return 8;
-     if(vec[1].reihe == thisContr.reihe && vec[1].spalte == (thisContr.spalte -1) ) return 2;
-    if(vec[1].reihe == (thisContr.reihe - 1) && vec[1].spalte == (thisContr.spalte +1) ) return 9;
-    if(vec[1].reihe == (thisContr.reihe - 1) && vec[1].spalte == (thisContr.spalte -1) ) return 3;
     
 }
 

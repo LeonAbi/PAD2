@@ -25,12 +25,39 @@
 #include "Active.h"
 #include "Lever.h"
 #include <cmath>
+#include "Item.h"
+#include <set>
 
 using namespace std;
 
 struct Position{
     int reihe;
     int spalte;
+};
+
+struct Kante{
+    Position knoten1;
+    Position knoten2;
+};
+
+struct comp{
+    bool operator()(const Position& left,const Position& right){
+        if(left.reihe == right.reihe) return left.spalte<right.spalte;
+        else return left.reihe < right.reihe;
+    }
+};
+
+struct compKante{
+    bool operator()(const Kante& left,const Kante& right){
+        if(left.knoten1.reihe == right.knoten1.reihe && left.knoten1.spalte == right.knoten1.spalte){
+            if(left.knoten2.reihe == right.knoten2.reihe) return left.knoten2.spalte < right.knoten2.spalte;
+            else return left.knoten2.reihe < right.knoten2.reihe;
+        }
+        else{
+            if(left.knoten1.reihe == right.knoten1.reihe) return left.knoten1.spalte < right.knoten1.spalte;
+            else return left.knoten1.reihe < right.knoten1.reihe;
+        }
+    }
 };
 
 class DungeonMap
@@ -46,7 +73,7 @@ public:
     Position findCharacter(Character* c);
     void print(Position from);
     bool hasLineOfSight(Position from, Position to);
-    vector<Position> getPathTo(Position from, Position to);
+    void getPathTo(Position from, Position to);
     Position findChar(char c);
     double round(double x);
 

@@ -11,9 +11,12 @@
  * Created on 29. Mai 2017, 19:44
  */
 
+
 #ifndef ITEM_H
 #define ITEM_H
 
+#include <iostream>
+using namespace std;
 class Item
 {
 public:
@@ -22,8 +25,9 @@ public:
     virtual ~Item();
     virtual int modifyStrength(int strength) = 0;
     virtual int modifyStamina(int stamina) = 0;
+    void print();
 private:
-
+    char m_symbol;
 };
 
 class ArmingSword : public Item

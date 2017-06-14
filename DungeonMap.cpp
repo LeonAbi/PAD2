@@ -187,6 +187,7 @@ void DungeonMap::print(Position from)
             if(playground[i][j]->hasCharacter()){
                 cout << playground[i][j]->getFigure()->getSign();
             }
+            
             else{
             if(hasLineOfSight(from, posT)){
                 playground[i][j]->print();
@@ -305,45 +306,37 @@ double DungeonMap::round(double x){
 
 //Praktikum 5
 
-vector<Position> DungeonMap::getPathTo(Position from, Position to)
+void DungeonMap::getPathTo(Position from, Position to)
 {
-    int fReihe = from.reihe;
-    int fSpalte = from.spalte;
+    set<Position, comp> knoten;
 
-    unsigned int reihe = fReihe - to.reihe;
-    unsigned int spalte = fSpalte - to.spalte;
-    vector<Position> pos;
-
-    while (reihe != 1 && spalte != 1)
+    for (int i = 0; i < hoehe; i++)
     {
-        Position p;
-        if (from.reihe - to.reihe > 1)
+        for (int j = 0; j < breite; j++)
         {
-            p.reihe = from.reihe - 1;
-            fReihe--;
+            Position p;
+            if (playground[i][j]->isTransparent())
+            {
+                p.spalte = i;
+                p.reihe = j;
+                knoten.insert(p);
+            }
         }
-        else if (from.reihe - to.reihe < -1)
-        {
-            p.reihe = from.reihe + 1;
-            fReihe++;
-        }
-        else p.reihe = from.reihe;
-
-        if (from.spalte - to.spalte > 1)
-        {
-            p.spalte = from.spalte - 1;
-            fSpalte--;
-        }
-        else if (from.spalte - to.spalte < -1)
-        {
-            p.spalte = from.spalte + 1;
-            fSpalte++;
-        }
-        else p.spalte = from.spalte;
-
-        pos.push_back(p);
     }
 
+    set<Kante, compKante> kante;
+    for (int i = 0; i < (knoten.size() - 1); i++)
+    {
+        for(int j = i+1; knoten.size(); j++)
+        {
+            Kante k;
+            k.knoten1 = *next(knoten.begin(), i);
+            k.knoten2 = *next(knoten.begin(), j);
+            unsigned reihe = k.knoten1.reihe - k.knoten2.reihe;
+            unsigned spalte = k.knoten1.spalte - k.knoten2.spalte;
+            if(reihe < 2 && spalte < 2 ) kante.insert(k);
+        }
+    }
 }
 
 Position DungeonMap::findChar(char c){

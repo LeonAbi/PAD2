@@ -23,6 +23,7 @@ public:
     virtual ~Lever();
     void onEnter(Character* c, Tile* fromTile) override;
     void onLeave(Tile* toTile) override;
+    void print() override;
 private:
 
 };

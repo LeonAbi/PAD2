@@ -71,3 +71,7 @@ bool Floor::isTransparent(){
     return true;
 }
 
+void Floor::print(){
+    cout << ".";
+}
+

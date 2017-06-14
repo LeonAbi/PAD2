@@ -177,29 +177,53 @@ Position DungeonMap::findCharacter(Character* c)
 void DungeonMap::print(Position from)
 {
 
-
     Position posT;
     
     for(int i=0;i<hoehe;i++){
         for(int j=0;j<breite;j++){
+            posT.spalte = i;
+            posT.reihe = j;
+            
             if(playground[i][j]->hasCharacter()){
-                
                 cout << playground[i][j]->getFigure()->getSign();
             }
-            
-           
+            else{
+            if(hasLineOfSight(from, posT)){
+                playground[i][j]->print();
+            }
             
             else{
-                posT.reihe = i;
-                posT.spalte = j;
-                if(hasLineOfSight(from, posT)){
-                    cout << playground[i][j]->getChar();
-                }
-                else cout << "#";
+                cout << "#";
             }
+            
         }
-        cout << endl;
+       
+        }
+    cout << endl;
     }
+
+//////////    Position posT;
+//////////    
+//////////    for(int i=0;i<hoehe;i++){
+//////////        for(int j=0;j<breite;j++){
+//////////            if(playground[i][j]->hasCharacter()){
+//////////                
+//////////                cout << playground[i][j]->getFigure()->getSign();
+//////////            }
+//////////            
+//////////           
+//////////            
+//////////            else{
+//////////                posT.reihe = i;
+//////////                posT.spalte = j;
+//////////                if(hasLineOfSight(from, posT)){
+//////////                    cout << playground[i][j]->getChar();
+//////////                }
+//////////                else cout << "#";
+//////////            }
+//////////        }
+//////////        cout << endl;
+//////////    }
 
 
 //        for(int i=0;i<hoehe;i++){

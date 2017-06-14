@@ -34,6 +34,7 @@ public:
     void setChar(char chara);
     char getChar();
     virtual bool isTransparent()=0;
+    virtual void print()=0;
 private:
     Kacheltyp kachel;
     Character* figure;

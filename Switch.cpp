@@ -44,3 +44,13 @@ void Switch::onLeave(Tile* toTile)
     //}
 
 }
+
+void Switch::print(){
+    if(getActivated() == true){
+        cout << "!";
+    }
+    
+    else{
+        cout << "?";
+    }
+}

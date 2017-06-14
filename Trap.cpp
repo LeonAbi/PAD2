@@ -50,4 +50,14 @@ bool Trap::isTransparent(){
     return true;
 }
 
+void Trap::print(){
+    if(getStatus() == true){
+        cout << "T";
+    }
+    
+    else{
+        cout << ".";
+    }
+}
+
 

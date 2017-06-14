@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=P5_HasLineOfSight
+PROJECTNAME=printAufteilen
 
 # Active Configuration
 DEFAULTCONF=Debug

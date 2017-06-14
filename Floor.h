@@ -34,6 +34,7 @@ public:
     void setActive(Active* active);
     void setPassive(Passive* passive);
     bool isTransparent() override;
+    void print() override;
 
 private:
    Item* m_item; 

@@ -54,3 +54,13 @@ void Door::onEnter(Character* c, Tile* fromTile)
 bool Door::isTransparent(){
     return getStatus();
 }
+
+void Door::print(){
+    if(getStatus() == true){
+        cout << "/";
+    }
+    
+    else{
+        cout << "X";
+    }
+}

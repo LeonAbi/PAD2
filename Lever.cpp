@@ -54,3 +54,13 @@ void Lever::onLeave(Tile* toTile)
 
 }
 
+void Lever::print(){
+    if(getActivated() == true){
+        cout << "!";
+    }
+    
+    else{
+        cout << "?";
+    }
+}
+

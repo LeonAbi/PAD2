@@ -76,6 +76,7 @@ public:
     void getPathTo(Position from, Position to);
     Position findChar(char c);
     double round(double x);
+    void setTile(int x, int y, string tile);
 
 private:
     DungeonMap(const DungeonMap& orig);

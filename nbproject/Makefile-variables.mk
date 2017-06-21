@@ -7,21 +7,21 @@ CND_BASEDIR=`pwd`
 CND_BUILDDIR=build
 CND_DISTDIR=dist
 # Debug configuration
-CND_PLATFORM_Debug=CLang-Linux
-CND_ARTIFACT_DIR_Debug=dist/Debug/CLang-Linux
-CND_ARTIFACT_NAME_Debug=djistra
-CND_ARTIFACT_PATH_Debug=dist/Debug/CLang-Linux/djistra
-CND_PACKAGE_DIR_Debug=dist/Debug/CLang-Linux/package
-CND_PACKAGE_NAME_Debug=djistra.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/CLang-Linux/package/djistra.tar
+CND_PLATFORM_Debug=GNU-Linux
+CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
+CND_ARTIFACT_NAME_Debug=f_rpr6
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/f_rpr6
+CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
+CND_PACKAGE_NAME_Debug=fürpr6.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/fürpr6.tar
 # Release configuration
 CND_PLATFORM_Release=CLang-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/CLang-Linux
-CND_ARTIFACT_NAME_Release=djistra
-CND_ARTIFACT_PATH_Release=dist/Release/CLang-Linux/djistra
+CND_ARTIFACT_NAME_Release=f_rpr6
+CND_ARTIFACT_PATH_Release=dist/Release/CLang-Linux/f_rpr6
 CND_PACKAGE_DIR_Release=dist/Release/CLang-Linux/package
-CND_PACKAGE_NAME_Release=djistra.tar
-CND_PACKAGE_PATH_Release=dist/Release/CLang-Linux/package/djistra.tar
+CND_PACKAGE_NAME_Release=fürpr6.tar
+CND_PACKAGE_PATH_Release=dist/Release/CLang-Linux/package/fürpr6.tar
 #
 # include compiler specific variables
 #

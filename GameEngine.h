@@ -36,13 +36,13 @@ class GameEngine
 {
 public:
     GameEngine();
-    GameEngine(int height, int width, const vector<string>& data, vector<string> specialTiles);
+    GameEngine(int height, int width, const vector<string>& data, vector<string>& specialTiles);
     virtual ~GameEngine();
     bool finished();
     void turn();
     void run();
     void help(vector<string> doors);
-    void parser(vector<string> specialTiles);
+    void parser(vector<string>& specialTiles);
     void helpDoor(istringstream& stream, string s);
     void helpCharacter(istringstream& stream);
     void helpItem(istringstream& stream);

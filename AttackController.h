@@ -23,7 +23,7 @@ public:
     AttackController();
     AttackController(const AttackController& orig);
     virtual ~AttackController();
-    int move();
+    int move() override;
 private:
     DungeonMap* m_map;
     Character* m_char;

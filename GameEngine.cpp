@@ -19,7 +19,7 @@ GameEngine::GameEngine()
 
 }
 
-GameEngine::GameEngine(int height, int width, const vector<string>& data, vector<string> specialTiles) :
+GameEngine::GameEngine(int height, int width, const vector<string>& data, vector<string>& specialTiles) :
 dm(height, width, data)
 {
     parser(specialTiles);
@@ -139,7 +139,7 @@ void GameEngine::run()
 //    }
 //}
 
-void GameEngine::parser(vector<string> specialTiles)
+void GameEngine::parser(vector<string>& specialTiles)
 {
 
     for (int i = 0; i < specialTiles.size(); i++)
@@ -171,7 +171,7 @@ void GameEngine::parser(vector<string> specialTiles)
             helpItem(sstream);
         }
 
-        else throw runtime_error("Falsches Objekt");
+        //else throw runtime_error("Falsches Objekt");
     }
 }
 
@@ -208,25 +208,22 @@ void GameEngine::helpDoor(istringstream& stream, string s)
 
 
     //nacheinander Reihe/Spalte eingelesen
-    stream >> p1.spalte;
     stream >> p1.reihe;
+    stream >> p1.spalte;  
+    
+    dm.setTile(p1.spalte, p1.reihe, s);
+    pTile = dynamic_cast<Passive*> (dm.findTile(p1));
 
-pTile = dynamic_cast<Passive*> (dm.findTile(p1));
-
-
-    //wenn Stream schon fertig ist (bsp Trap) dann aufhören ansonsten verlinken
-    if (!stream.eof())
-    {
         stream >> word;
-        stream >> p2.spalte;
         stream >> p2.reihe;
-
+        stream >> p2.spalte;
+    
+        
+        dm.setTile(p2.spalte, p2.reihe, word);
         aTile = dynamic_cast<Active*> (dm.findTile(p2));
 
-         aTile->setpPassive(pTile);
-
-
-    }
+         
+        aTile->setpPassive(pTile);
 
 }
 

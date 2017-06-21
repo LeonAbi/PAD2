@@ -26,7 +26,7 @@ AttackController::~AttackController()
 }
 
 int AttackController::move(){
-    
+   // if(m_map->getPathTo())
     
 }
 

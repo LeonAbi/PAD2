@@ -174,6 +174,23 @@ Position DungeonMap::findCharacter(Character* c)
     return p;
 }
 
+void DungeonMap::setTile(int x, int y, string tile){
+    if(tile == "Door"){
+        playground[x][y] = new Door('X');
+    }
+    
+    if(tile == "Lever"){
+        playground[x][y] = new Lever('?');
+    }
+    
+    if(tile == "Switch"){
+        playground[x][y] = new Switch('?');
+    }
+    
+    if(tile == "Trap"){
+        playground[x][y] = new Trap('.');
+    }
+}
 void DungeonMap::print(Position from)
 {
 
@@ -244,8 +261,8 @@ void DungeonMap::print(Position from)
 bool DungeonMap::hasLineOfSight(Position from, Position to)
 {
 
-    double deltaX= to.reihe -from.reihe;
-    double deltaY= to.spalte - from.spalte;
+    double deltaX= to.spalte -from.spalte;
+    double deltaY= to.reihe - from.reihe;
     double len = sqrt((deltaX *deltaX) + (deltaY * deltaY));
     if(len==0) return true;
     
@@ -253,8 +270,8 @@ bool DungeonMap::hasLineOfSight(Position from, Position to)
         double stepX = deltaX / len;
         double stepY = deltaY / len;
         
-        deltaX = from.reihe;
-        deltaY = from.spalte;
+        deltaX = from.spalte;
+        deltaY = from.reihe;
         
         for(double i=0;i<round(len);i++){
             if(playground[static_cast<int>(round(deltaX))][static_cast<int>(round(deltaY))]->isTransparent() == false){

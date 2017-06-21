@@ -15,7 +15,7 @@
 
 Door::Door(char c) : Passive()
 {
-    setChar(c);
+    setChar('X');
     
     if(c == '/') setStatus(true);
     else setStatus(false);

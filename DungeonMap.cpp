@@ -110,7 +110,8 @@ breite(width), hoehe(height)
                 playground[i][j] = new Trap('T');
                 break;
             default:
-                throw std::runtime_error("invalid Tile Type requested");
+                break;
+              //  throw std::runtime_error("invalid Tile Type requested");
             }
         }
     }

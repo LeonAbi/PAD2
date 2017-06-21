@@ -61,6 +61,7 @@ void GameEngine::turn()
         switch (richtung)
         {
         case 0: menue();
+        break;
         case 1: p.spalte++;
             p.reihe--;
             break;
@@ -163,7 +164,7 @@ void GameEngine::parser(vector<string>& specialTiles)
 
         else if (word == "Trap")
         {
-            helpDoor(sstream, word);
+            helpTrap(sstream, word);
         }
 
         else if (word == "Item")
@@ -285,10 +286,23 @@ void GameEngine::menue(){
     switch(eingabe){
     case 0:          
         exit(0);
+        
     case 1:     for(int i=0;i<m_chars.size();i++){
         m_chars.at(i)->showInfo();
     }
     break;
+    break;
     case 2:     break;
     }
+}
+
+
+//funktioniert noch nicht richtig
+void GameEngine::helpTrap(istringstream& stream, string word){
+    Position p1;
+    
+    stream >> p1.reihe >> p1.spalte;
+    
+    dm.setTile(p1.spalte,p1.reihe, word);
+    
 }

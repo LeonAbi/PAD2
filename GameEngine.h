@@ -43,9 +43,12 @@ public:
     void run();
     void help(vector<string> doors);
     void parser(vector<string>& specialTiles);
+    //funktioniert noch nicht richtig (Zeichen wird vor Aktivierung nicht richtig ausgegeben
     void helpDoor(istringstream& stream, string s);
     void helpCharacter(istringstream& stream);
     void helpItem(istringstream& stream);
+    //funktioniert noch nicht richtig (Zeichen wird nach Aktivierung nicht richtig ausgegeben)
+    void helpTrap(istringstream& stream, string word);
     void menue();
  
 private:

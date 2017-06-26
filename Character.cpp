@@ -80,3 +80,12 @@ int Character::getStrength(){
 void Character::setHP(int hp){
     m_hitpoints = m_hitpoints + hp;
 }
+
+int Character::getHp(){
+    return m_hitpoints;
+}
+
+//ostream& Character::operator<<(ostream& output, const Character& character){
+//    
+//    return output;
+//}

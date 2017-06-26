@@ -77,6 +77,9 @@ public:
     Position findChar(char c);
     double round(double x);
     void setTile(int x, int y, string tile);
+    set<Kante, compKante> Dijkstra(set<Kante, compKante> gegeben, set<Kante, compKante> gelaufen, Position start, Position ziel);
+    int posAbstand(Position p1, Position p2);
+    bool samePos(Position p1, Position p2);
 
 private:
     DungeonMap(const DungeonMap& orig);

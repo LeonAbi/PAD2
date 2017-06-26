@@ -86,7 +86,23 @@ void GameEngine::turn()
         }
 
         t_new = dm.findTile(p);
-        t_old->onLeave(t_new);
+        if (t_new->getFigure() != nullptr)
+        {
+            t_new->getFigure()->setHP((t_new->getFigure()->getMaxHP() - t_old->getFigure()->getStrength()));
+            if (t_new->getFigure()->getHp() > 0)
+            {
+                t_old->getFigure()->setHP((t_old->getFigure()->getMaxHP() - t_new->getFigure()->getStrength()));
+            }
+            else t_old->onLeave(t_new);
+        }
+        
+        int humanChars = 0;
+        
+        for(int i =0; i< m_chars.size(); i++){
+            if(m_chars.at(i)->getSign() != 'q') humanChars++;
+        }
+        
+        if(humanChars > 0) exit(0);
 
     }
 

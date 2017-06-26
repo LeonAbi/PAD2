@@ -326,6 +326,8 @@ double DungeonMap::round(double x){
 
 void DungeonMap::getPathTo(Position from, Position to)
 {
+    
+    //alle Punkte, die überhaupt betretbar sind
     set<Position, comp> knoten;
 
     for (int i = 0; i < hoehe; i++)
@@ -342,6 +344,7 @@ void DungeonMap::getPathTo(Position from, Position to)
         }
     }
 
+    //macht Kanten zwischen zwei knoten
     set<Kante, compKante> kante;
     for (int i = 0; i < (knoten.size() - 1); i++)
     {
@@ -352,9 +355,13 @@ void DungeonMap::getPathTo(Position from, Position to)
             k.knoten2 = *next(knoten.begin(), j);
             unsigned reihe = k.knoten1.reihe - k.knoten2.reihe;
             unsigned spalte = k.knoten1.spalte - k.knoten2.spalte;
+            //nur wenn die Punkte auch wirklich in Reihe und Spalte maximal
+            //1 auseinander sind hinzufügen
             if(reihe < 2 && spalte < 2 ) kante.insert(k);
         }
     }
+    
+    
 }
 
 Position DungeonMap::findChar(char c){
@@ -369,4 +376,74 @@ Position DungeonMap::findChar(char c){
         }
     }
 }
+
+
+
+//Merts Vorschlag
+set<Kante, compKante> DungeonMap::Dijkstra(set<Kante, compKante> gegeben, set<Kante, compKante> gelaufen, Position start, Position ziel)
+{
+    set<Kante, compKante> comp;
+
+    if (samePos(start, ziel)) return gelaufen;
+    else if (gegeben.empty())
+    {
+        gelaufen.clear();
+        return gelaufen;
+    }
+    else
+    {
+        unsigned deltaX = ziel.reihe - start.reihe;
+        unsigned deltaY = ziel.spalte - start.spalte;
+
+        if (deltaX > 0 || deltaY > 0)
+        {
+            for (int i = 0; i < gegeben.size(); i++)
+            {
+                Kante k = *next(gegeben.begin(), i - 1);
+
+                if ((samePos(k.knoten1, start) && posAbstand(start, k.knoten2) == 1) || (samePos(k.knoten2, start) && posAbstand(start, k.knoten1) == 1))
+                {
+                    Position p;
+                    if ((samePos(k.knoten1, start))) p = k.knoten1;
+                    else p = k.knoten2;
+
+                    gelaufen.insert(*next(gegeben.begin(), i - 1));
+                    gegeben.erase(next(gegeben.begin(), i - 1));
+
+                    set<Kante, compKante> zw = Dijkstra(gegeben, gelaufen, p, ziel);
+
+                    if (comp.size() == 0) comp = zw;
+                    else if (zw.size() != 0 && zw.size() < comp.size()) comp = zw;
+
+                }
+            }
+        }
+        return comp;
+    }
+}
+
+
+
+
+int DungeonMap::posAbstand(Position p1, Position p2)
+{
+    unsigned deltaX = p1.reihe - p2.reihe;
+    unsigned deltaY = p1.spalte - p2.spalte;
+
+    if (deltaX > deltaY) return deltaX;
+    else return deltaY;
+}
+
+
+
+
+
+
+bool DungeonMap::samePos(Position p1, Position p2)
+{
+    if (p1.reihe == p2.reihe && p1.spalte == p2.spalte) return true;
+    else return false;
+}
+
+
 

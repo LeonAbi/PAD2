@@ -27,6 +27,7 @@ public:
 private:
     DungeonMap* m_map;
     Character* m_char;
+    Character* m_aController;
 };
 
 #endif /* ATTACKCONTROLLER_H */

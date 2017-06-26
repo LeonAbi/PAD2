@@ -36,6 +36,10 @@ public:
     int getStamina();
     int getStrength();
     void setHP(int hp);
+    int getHp();
+    
+    //Operatorüberladung
+//    friend std::ostream& operator<<(ostream& outputstream, const Character& character);
 private:
     char m_sign;
     Controller* m_controller;

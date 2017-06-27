@@ -15,6 +15,7 @@
 #define DUNGEONMAP_H
 
 #include "Door.h"
+#include <iostream>
 #include "Switch.h"
 #include <string>
 #include "Tile.h"
@@ -33,6 +34,13 @@ using namespace std;
 struct Position{
     int reihe;
     int spalte;
+    
+    friend ostream& operator<<(ostream& outputstream, const Position& pos){
+        outputstream << "(" << pos.reihe << "/" << pos.spalte << ")";
+    }
+    friend istream& operator>>(istream& inputstream, Position& pos){
+        inputstream >> pos.reihe >> pos.spalte;
+    }
 };
 
 struct Kante{
@@ -73,11 +81,11 @@ public:
     Position findCharacter(Character* c);
     void print(Position from);
     bool hasLineOfSight(Position from, Position to);
-    void getPathTo(Position from, Position to);
+    vector<Position> getPathTo(Position from, Position to);
     Position findChar(char c);
     double round(double x);
     void setTile(int x, int y, string tile);
-    set<Kante, compKante> Dijkstra(set<Kante, compKante> gegeben, set<Kante, compKante> gelaufen, Position start, Position ziel);
+    vector<Kante> Dijkstra(set<Kante, compKante> gegeben, vector<Kante> gelaufen, Position start, Position ziel);
     int posAbstand(Position p1, Position p2);
     bool samePos(Position p1, Position p2);
 

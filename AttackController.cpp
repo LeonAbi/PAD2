@@ -15,6 +15,7 @@
 
 AttackController::AttackController()
 {
+    
 }
 
 AttackController::AttackController(const AttackController& orig)

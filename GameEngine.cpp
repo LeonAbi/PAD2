@@ -85,24 +85,29 @@ void GameEngine::turn()
         default: break;
         }
 
+        //alte Variante funktioniert
         t_new = dm.findTile(p);
-        if (t_new->getFigure() != nullptr)
-        {
-            t_new->getFigure()->setHP((t_new->getFigure()->getMaxHP() - t_old->getFigure()->getStrength()));
-            if (t_new->getFigure()->getHp() > 0)
-            {
-                t_old->getFigure()->setHP((t_old->getFigure()->getMaxHP() - t_new->getFigure()->getStrength()));
-            }
-            else t_old->onLeave(t_new);
-        }
+        t_old->onLeave(t_new);
         
-        int humanChars = 0;
+        //neue Variante funktioniert noch nicht
         
-        for(int i =0; i< m_chars.size(); i++){
-            if(m_chars.at(i)->getSign() != 'q') humanChars++;
-        }
-        
-        if(humanChars > 0) exit(0);
+//        if (t_new->getFigure() != nullptr)
+//        {
+//            t_new->getFigure()->setHP((t_new->getFigure()->getMaxHP() - t_old->getFigure()->getStrength()));
+//            if (t_new->getFigure()->getHP() > 0)
+//            {
+//                t_old->getFigure()->setHP((t_old->getFigure()->getMaxHP() - t_new->getFigure()->getStrength()));
+//            }
+//            else t_old->onLeave(t_new);
+//        }
+//        
+//        int humanChars = 0;
+//        
+//        for(int i =0; i< m_chars.size(); i++){
+//            if(m_chars.at(i)->getSign() != 'q') humanChars++;
+//        }
+//        
+//       // if(humanChars > 0) exit(0);
 
     }
 
@@ -211,6 +216,11 @@ void GameEngine::helpCharacter(istringstream& stream)
     {
         controller = new StationaryController();
     }
+    
+//    if(word == "AttackController"){
+//        controller = new AttackController();
+//    }
+    
     chara = new Character(symbol, strength, stamina, controller);
     m_chars.push_back(chara);
     dm.place(p1, chara);

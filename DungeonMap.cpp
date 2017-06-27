@@ -324,46 +324,64 @@ double DungeonMap::round(double x){
 
 //Praktikum 5
 
-void DungeonMap::getPathTo(Position from, Position to)
-{
+vector<Position> DungeonMap::getPathTo(Position from, Position to){
+        
+    vector<Position> weg;
     
-    //alle Punkte, die überhaupt betretbar sind
-    set<Position, comp> knoten;
-
-    for (int i = 0; i < hoehe; i++)
-    {
-        for (int j = 0; j < breite; j++)
-        {
-            Position p;
-            if (playground[i][j]->isTransparent())
-            {
-                p.spalte = i;
-                p.reihe = j;
-                knoten.insert(p);
-            }
+//Fatih & Celal
+    
+    if(hasLineOfSight(from, to)){
+    while (from.reihe != to.reihe && from.spalte != to.spalte){
+        
+        if (from.spalte > to.spalte && from.reihe > to.reihe){
+            from.spalte--;
+            from.reihe--;
+            weg.push_back(from);
+            //continue;
         }
-    }
-
-    //macht Kanten zwischen zwei knoten
-    set<Kante, compKante> kante;
-    for (int i = 0; i < (knoten.size() - 1); i++)
-    {
-        for(int j = i+1; knoten.size(); j++)
-        {
-            Kante k;
-            k.knoten1 = *next(knoten.begin(), i);
-            k.knoten2 = *next(knoten.begin(), j);
-            unsigned reihe = k.knoten1.reihe - k.knoten2.reihe;
-            unsigned spalte = k.knoten1.spalte - k.knoten2.spalte;
-            //nur wenn die Punkte auch wirklich in Reihe und Spalte maximal
-            //1 auseinander sind hinzufügen
-            if(reihe < 2 && spalte < 2 ) kante.insert(k);
+        
+        if (from.spalte < to.reihe && from.reihe < to.reihe){
+            from.spalte++;
+            from.reihe++;
+            weg.push_back(from);
         }
+        
+        if (from.spalte < to.reihe && from.reihe > to.reihe){
+            from.spalte++;
+            from.reihe--;
+            weg.push_back(from);
+        }
+        
+        if (from.spalte > to.reihe && from.reihe < to.reihe){
+            from.spalte--;
+            from.reihe++;
+            weg.push_back(from);
+        }
+        
+        if (from.spalte > to.spalte && from.reihe == to.reihe){
+            from.spalte--;
+            weg.push_back(from);
+        }
+        
+        if (from.spalte < to.spalte && from.reihe == to.reihe){
+            from.spalte++;
+            weg.push_back(from);
+        }
+        
+        if (from.spalte == to.spalte && from.reihe < to.reihe){
+            from.reihe++;
+            weg.push_back(from);
+        }
+        
+        if (from.spalte == to.spalte && from.reihe > to.reihe){
+            from.reihe--;
+            weg.push_back(from);
+        }
+        
     }
-    
-    
+    }
 }
-
+    
 Position DungeonMap::findChar(char c){
     Position p;
     for(int i= 0; i<hoehe; i++){
@@ -380,9 +398,9 @@ Position DungeonMap::findChar(char c){
 
 
 //Merts Vorschlag
-set<Kante, compKante> DungeonMap::Dijkstra(set<Kante, compKante> gegeben, set<Kante, compKante> gelaufen, Position start, Position ziel)
+vector<Kante> DungeonMap::Dijkstra(set<Kante, compKante> gegeben, vector<Kante> gelaufen, Position start, Position ziel)
 {
-    set<Kante, compKante> comp;
+    vector <Kante> comp;
 
     if (samePos(start, ziel)) return gelaufen;
     else if (gegeben.empty())
@@ -401,19 +419,23 @@ set<Kante, compKante> DungeonMap::Dijkstra(set<Kante, compKante> gegeben, set<Ka
             {
                 Kante k = *next(gegeben.begin(), i - 1);
 
-                if ((samePos(k.knoten1, start) && posAbstand(start, k.knoten2) == 1) || (samePos(k.knoten2, start) && posAbstand(start, k.knoten1) == 1))
+                if (samePos(k.knoten1, start) || samePos(k.knoten2, start))
                 {
                     Position p;
-                    if ((samePos(k.knoten1, start))) p = k.knoten1;
-                    else p = k.knoten2;
+                    if ((samePos(k.knoten1, start))) p = k.knoten2;
+                    else p = k.knoten1;
 
-                    gelaufen.insert(*next(gegeben.begin(), i - 1));
+                    gelaufen.push_back(*next(gegeben.begin(), i -1));
                     gegeben.erase(next(gegeben.begin(), i - 1));
 
-                    set<Kante, compKante> zw = Dijkstra(gegeben, gelaufen, p, ziel);
+                    vector<Kante> zw = Dijkstra(gegeben, gelaufen, p, ziel);
 
-                    if (comp.size() == 0) comp = zw;
-                    else if (zw.size() != 0 && zw.size() < comp.size()) comp = zw;
+                    if(!zw.size()>comp.size()){
+                        comp = zw;
+                    }
+                    else{
+                        gelaufen.pop_back();
+                    }
 
                 }
             }

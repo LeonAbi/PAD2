@@ -81,11 +81,11 @@ void Character::setHP(int hp){
     m_hitpoints = m_hitpoints + hp;
 }
 
-int Character::getHp(){
+int Character::getHP(){
     return m_hitpoints;
 }
 
-//ostream& Character::operator<<(ostream& output, const Character& character){
-//    
-//    return output;
-//}
+ostream& operator<<(ostream& outputstream, Character& character){
+    outputstream << "Character " << character.m_sign << character.m_strength << character.m_stamina << character.m_hitpoints;
+    return outputstream;
+}

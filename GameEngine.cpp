@@ -44,6 +44,7 @@ bool GameEngine::finished()
 
 void GameEngine::turn()
 {
+    int m;
     Position p;
     Position p_old;
     Tile* t_old;
@@ -61,7 +62,7 @@ void GameEngine::turn()
         switch (richtung)
         {
         case 0: menue();
-        break;
+                break;
         case 1: p.spalte++;
             p.reihe--;
             break;
@@ -87,27 +88,28 @@ void GameEngine::turn()
 
         //alte Variante funktioniert
         t_new = dm.findTile(p);
-        t_old->onLeave(t_new);
+        //t_old->onLeave(t_new);
         
-        //neue Variante funktioniert noch nicht
+       // neue Variante funktioniert noch nicht
         
-//        if (t_new->getFigure() != nullptr)
-//        {
-//            t_new->getFigure()->setHP((t_new->getFigure()->getMaxHP() - t_old->getFigure()->getStrength()));
-//            if (t_new->getFigure()->getHP() > 0)
-//            {
-//                t_old->getFigure()->setHP((t_old->getFigure()->getMaxHP() - t_new->getFigure()->getStrength()));
-//            }
-//            else t_old->onLeave(t_new);
-//        }
-//        
-//        int humanChars = 0;
-//        
-//        for(int i =0; i< m_chars.size(); i++){
-//            if(m_chars.at(i)->getSign() != 'q') humanChars++;
-//        }
-//        
-//       // if(humanChars > 0) exit(0);
+        if (t_new->getFigure() != nullptr)
+        {
+            t_new->getFigure()->setHP((t_new->getFigure()->getMaxHP() - t_old->getFigure()->getStrength()));
+            if (t_new->getFigure()->getHP() > 0)
+            {
+                t_old->getFigure()->setHP((t_old->getFigure()->getMaxHP() - t_new->getFigure()->getStrength()));
+            }
+            else t_old->onLeave(t_new);
+        }
+        else t_old->onLeave(t_new);
+        
+        int humanChars = 0;
+        
+        for(int i =0; i< m_chars.size(); i++){
+            if(m_chars.at(i)->getSign() != 'q') humanChars++;
+        }
+        
+        if(humanChars = 0) return; //exit(0);
 
     }
 
@@ -310,13 +312,12 @@ void GameEngine::menue(){
             
             cin >> eingabe;
     switch(eingabe){
-    case 0:          
-        exit(0);
+    case 0:
+       // exit(0);
         
     case 1:     for(int i=0;i<m_chars.size();i++){
         m_chars.at(i)->showInfo();
     }
-    break;
     break;
     case 2:     break;
     }

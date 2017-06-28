@@ -35,6 +35,7 @@ struct Position{
     int reihe;
     int spalte;
     
+
     friend ostream& operator<<(ostream& outputstream, const Position& pos){
         outputstream << "(" << pos.reihe << "/" << pos.spalte << ")";
     }
@@ -49,14 +50,14 @@ struct Kante{
 };
 
 struct comp{
-    bool operator()(const Position& left,const Position& right){
+        friend bool operator<(const Position& left,const Position& right){
         if(left.reihe == right.reihe) return left.spalte<right.spalte;
         else return left.reihe < right.reihe;
     }
 };
 
 struct compKante{
-    bool operator()(const Kante& left,const Kante& right){
+    friend bool operator<(const Kante& left,const Kante& right){
         if(left.knoten1.reihe == right.knoten1.reihe && left.knoten1.spalte == right.knoten1.spalte){
             if(left.knoten2.reihe == right.knoten2.reihe) return left.knoten2.spalte < right.knoten2.spalte;
             else return left.knoten2.reihe < right.knoten2.reihe;
@@ -67,7 +68,6 @@ struct compKante{
         }
     }
 };
-
 class DungeonMap
 {
 public:
